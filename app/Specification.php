@@ -8,7 +8,7 @@ class Specification extends Model
 {
     //
     protected $fillable = [
-    	'category_id','display','cpu','memory','main_camera','selfie_camera','battery','features','display','capacity','price','image','os','date'
+    	'category_id','display','cpu','memory','main_camera','selfie_camera','battery','features','display','capacity','price','image','os','date','review','youtube'
     ];
 
     public function category($value='')

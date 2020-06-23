@@ -27,7 +27,9 @@ class SpecificationResource extends JsonResource
               'price'   => $this->price,
               'image'   => $this->image, 
               'os'      => $this->os,
-              'date'    => $this->date
+              'date'    => $this->date,
+              'review'  => $this->review,
+              'youtube' => $this->youtube
         ];
     }
 }

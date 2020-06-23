@@ -38,6 +38,7 @@ class CategoryController extends Controller
           
             'type_id' => 'required',
             'brand_id' => 'required']);
+
         $category = Category::create([
             'name'      => request('category_name'),
             'type_id'   => request('type_id'),
@@ -51,7 +52,7 @@ class CategoryController extends Controller
         return response()->json([
             'category' => $category,
             'message' => 'Insert Successful!!'
-        ]);
+        ],200);
     }
 
     /**
@@ -62,7 +63,11 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        $category = CategoryResource::make($category);
+        return response()->json([
+            'category' => $category
+        ],200);
     }
 
     /**
@@ -99,6 +104,11 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+          $category = Category::find($id);
+          $category->delete();
+
+        return response()->json([
+            'message' => "Successfully Category Deleted!"
+        ],200);
     }
 }

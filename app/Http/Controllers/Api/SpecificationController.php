@@ -71,8 +71,10 @@ class SpecificationController extends Controller
               'capacity'        => request('capacity'),
               'price'           => request('price'),
               'image'           => $image,
-              'os'           => request('os'),
-              'date'           => request('date'),
+              'os'              => request('os'),
+              'date'            => request('date'),
+              'review'          => request('review'),
+              'youtube'         => request('youtube')
         ]);
 
         return response()->json([
@@ -148,6 +150,8 @@ class SpecificationController extends Controller
         $specificates->image = request('image');
         $specificates->os = request('os');
         $specificates->date = request('date');
+        $specificates->review = request('review');
+        $specificates->youtube = request('youtube');
         $specificates->save();
 
         return response()->json([

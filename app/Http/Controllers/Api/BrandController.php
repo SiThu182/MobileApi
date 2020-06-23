@@ -97,7 +97,7 @@ class BrandController extends Controller
         $brand = Brand::find($id);
         $brand->delete();
         return response()->json([
-            'message' => 'Delete Successful!!'
+            'message' => 'Successfully Brand Deleted!!!'
         ]);
     }
 }

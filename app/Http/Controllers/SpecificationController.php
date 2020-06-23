@@ -17,7 +17,7 @@ class SpecificationController extends Controller
     {
         $specifications = Specification::all();
         $categories = Category::all();
-        return view('specification',compact('specifications','categories'));
+        return view('specification.index',compact('specifications','categories'));
     }
 
     /**
@@ -38,7 +38,7 @@ class SpecificationController extends Controller
      */
     public function store(Request $request)
     {
-        $base_url = 'http://mobile.khaingthinkyi.me/';
+        // $base_url = 'http://mobile.khaingthinkyi.me/';
          $request->validate([
 
             'category_id' => 'required',
@@ -54,16 +54,16 @@ class SpecificationController extends Controller
             'os' => 'required|min:3|max:191',
             'date' => 'required'
         ]);
-        // dd($request);
+       
         if($request->hasfile('image')){
             $image=$request->file('image');
             $name=$image->getClientOriginalName();
             $image->move(public_path().
                 '/image/',$name);
-            $image=$base_url.'/image/'.$name;
+            $image='/image/'.$name;
         }
        
-
+         // dd($request);
         Specification::create([
               'category_id'     => request('category_id'),
               'cpu'             => request('cpu'),
@@ -77,7 +77,9 @@ class SpecificationController extends Controller
               'price'           => request('price'),
               'image'           => $image,
               'os'              => request('os'),
-              'date'            => request('date')
+              'date'            => request('date'),
+               'review'          => request('review'),
+              'youtube'         => request('youtube')
         ]);
 
 
@@ -103,7 +105,9 @@ class SpecificationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $specification = Specification::find($id);
+        $categories = Category::all();
+        return view('specification.edit',compact('specification','categories'));
     }
 
     /**
@@ -115,7 +119,7 @@ class SpecificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $base_url = "http://mobile.khaingthinkyi.me/";
+        // $base_url = "http://mobile.khaingthinkyi.me/";
         $request->validate([
 
             'category_id' => 'required',
@@ -132,14 +136,15 @@ class SpecificationController extends Controller
             'date' => 'required'
         ]);
         
+        // dd($request);
         if($request->hasfile('image')){
             $image=$request->file('image');
             $name=$image->getClientOriginalName();
             $image->move(public_path().
                 '/image/',$name);
-            $image=$base_url.'/image/'.$name;
+            $image= '/image/'.$name;
         }else{
-            $image = request('oldimg');
+            $image = request('old_image');
         }
         $specificates = Specification::find($id);
        
@@ -155,7 +160,9 @@ class SpecificationController extends Controller
         $specificates->price = request('price');
         $specificates->image = $image;
         $specificates->os = request('os');
-        $speccficates->date = request('date');
+        $specificates->date = request('date');
+        $specificates->review = request('review');
+        $specificates->youtube = request('youtube');
         $specificates->save();   
 
 
