@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Specification;
 use App\Category;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\DB;
 
 class SpecificationController extends Controller
 {
@@ -15,7 +17,9 @@ class SpecificationController extends Controller
      */
     public function index()
     {
-        $specifications = Specification::all();
+        $specifications = Specification::paginate(15);
+        // $specifications = DB::table('specifications')->paginate(15);
+        //dd($specifications);
         $categories = Category::all();
         return view('specification.index',compact('specifications','categories'));
     }

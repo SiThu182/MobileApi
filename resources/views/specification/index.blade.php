@@ -195,8 +195,12 @@
 			@endforeach
 		</table>
 	</div>
+
+	{{ $specifications->links() }}
 		
 	</div>
+	}
+	}
 	
 </div>
 
