@@ -28,6 +28,11 @@ class CreateSpecificationsTable extends Migration
             $table->string('image');
             $table->string('os');
             $table->date('date');
+            $table->string('cpu_rank')->nullable();
+            $table->string('gpu_rank')->nullable();
+            $table->string('memory_rank')->nullable();
+            $table->string('ux_rank')->nullable();
+            $table->string('total')->nullable();
             $table->string('review')->nullable();
             $table->string('youtube','50')->nullable();
             $table->timestamps();

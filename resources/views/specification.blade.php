@@ -161,16 +161,20 @@
 		
 
 	<div class="col-md-8 offset-2 mt-5">
-
-		<table class="table table-dark table-sm">
-			<tr>
-				<th>NO.</th>
-				 
-				<th>Mobile</th>
-				<th colspan="2">Action</th>
-			</tr>
+      
+		<table class="table table-dark ">
+		    <thead>
+		        	tr>
+    				<th>NO.</th>
+    				 
+    				<th>Mobile</th>
+    				<th colspan="2">Action</th>
+		    	</tr>
+		    </thead>
+		    <tbody>
+		    @if(!empty($data) && $data->count())  
 			@foreach($specifications as $specification)
-			<tr>
+		    	<tr>
 				<td>{{$specification->id}}</td>
 				 
 			 
@@ -187,7 +191,21 @@
                   </td>
 			</tr>
 			@endforeach
+		 @else
+            <tr>
+                <td colspan="10">There are no data.</td>
+            </tr>
+        @endif
+			</tbody>
+		
 		</table>
+	     
+	    
+		{!! specifications->links() !!}
+		 <ul class="pagination justify-content-center mb-4">
+                    
+                  </ul>
+
 	</div>
 		
 	</div>

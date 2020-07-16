@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Resources\CategoryResource;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,9 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
+        $categories = DB::table('categories')
+                    ->orderBy('name', 'asc')
+                    ->get();
          $categories =  CategoryResource::collection($categories);
 
         return response()->json([

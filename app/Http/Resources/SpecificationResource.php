@@ -29,7 +29,12 @@ class SpecificationResource extends JsonResource
               'os'      => $this->os,
               'date'    => $this->date,
               'review'  => $this->review,
-              'youtube' => $this->youtube
+              'youtube' => $this->youtube,
+              'cpu_rank'=> $this->cpu_rank,
+              'gpu_rank'=> $this->gpu_rank,
+              'memory_rank' => $this->memory_rank,
+              'ux_rank' => $this->ux_rank,
+              'total'   => $this->total
         ];
     }
 }
