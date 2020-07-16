@@ -178,7 +178,7 @@ class SpecificationController extends Controller
      public function getBrand(){
 
        
-        if($brand_id=request('brand_id')){
+        if($brand_id=request('category_id')){
             //dd($listing_id);
              $infos=DB::table('categories')
         ->join('brands','brands.id','=','categories.brand_id')
@@ -192,6 +192,26 @@ class SpecificationController extends Controller
         return response()->json([
             'specificates' => $infos
         ]);
+      }
+         public function getSpecification(){
+
+       
+        if($category_id=request('category_id')){
+            //dd($listing_id);
+             $specifications=DB::table('specifications')
+       
+        ->join('categories','categories.id','=','specifications.id')
+        ->select('specifications.*')
+        ->where('specifications.category_id', '=', $category_id)
+        ->get();
+            //dd($infos);
+        }
+        //dd($infos);
+        return response()->json([
+            'specifications' => $specifications
+        ]);
+
+
         //
     
     }

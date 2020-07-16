@@ -28,4 +28,9 @@ Route::Apiresource('/specifications','Api\SpecificationController');
 
 Route::get('/getbrand','Api\SpecificationController@getBrand');
 
+Route::get('/getCategory','Api\CategoryController@getCategory');
+
+Route::get('/getSpecification','Api\SpecificationController@getSpecification');
+
 Route::get('/orderDate','Api\SpecificationController@orderDate');
+

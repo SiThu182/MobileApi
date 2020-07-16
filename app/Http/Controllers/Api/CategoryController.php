@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Resources\CategoryResource;
-
+use Illuminate\Support\Facades\DB;
 class CategoryController extends Controller
 {
     /**
@@ -110,5 +110,24 @@ class CategoryController extends Controller
         return response()->json([
             'message' => "Successfully Category Deleted!"
         ],200);
+    }
+
+     public function getCategory(){
+       
+        if($brand_id=request('brand_id')){
+            //dd($listing_id);
+             $categories=DB::table('categories')
+                ->join('brands','brands.id','=','categories.brand_id')
+                ->select('categories.*')
+                ->where('categories.brand_id', '=', $brand_id)
+                ->get();
+            //dd($infos);
+        }
+        //dd($infos);
+        return response()->json([
+            'categories' => $categories
+        ]);
+        //
+    
     }
 }
