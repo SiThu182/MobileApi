@@ -163,6 +163,55 @@
 					</div>
 					
 				</div>
+				
+					<div class="row  form-group">
+					<div class="col-md-3 ">
+						<label>CPU Rank</label>
+					</div>
+					<div class="col-md-5">
+						<input type="text" name="cpu_rank" class="form-control" value="{{$specification->cpu_rank}}">
+					</div>
+					
+				</div>
+                
+                <div class="row  form-group">
+					<div class="col-md-3 ">
+						<label>GPU Rank </label>
+					</div>
+					<div class="col-md-5">
+						<input type="text" name="gpu_rank" class="form-control" value="{{$specification->gpu_rank}}">
+					</div>
+					
+				</div>
+				
+				<div class="row  form-group">
+					<div class="col-md-3 ">
+						<label>Memory Rank</label>
+					</div>
+					<div class="col-md-5">
+						<input type="text" name="memory_rank" class="form-control" value="{{$specification->memory_rank}}">
+					</div>
+					
+				</div>
+				
+				<div class="row  form-group">
+					<div class="col-md-3 ">
+						<label>UX Rank</label>
+					</div>
+					<div class="col-md-5">
+						<input type="text" name="ux_rank" class="form-control" value="{{$specification->ux_rank}}">
+					</div>
+					
+				</div>
+				<div class="row  form-group">
+					<div class="col-md-3 ">
+						<label>Total</label>
+					</div>
+					<div class="col-md-5">
+						<input type="text" name="total" class="form-control" value="{{$specification->total}}">
+					</div>
+					
+				</div>
 
 
 				<div class="offset-7 col-md-3">

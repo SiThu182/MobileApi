@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Specification;
 use App\Category;
 use Illuminate\Pagination\Paginator;
+<<<<<<< HEAD
+=======
 use Illuminate\Support\Facades\DB;
 
+>>>>>>> a2c7d9df466bcf34d77c74cba40608854a27f83c
 class SpecificationController extends Controller
 {
     /**
@@ -17,9 +20,13 @@ class SpecificationController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+        $specifications = Specification::paginate(10);
+=======
         $specifications = Specification::paginate(15);
         // $specifications = DB::table('specifications')->paginate(15);
         //dd($specifications);
+>>>>>>> a2c7d9df466bcf34d77c74cba40608854a27f83c
         $categories = Category::all();
         return view('specification.index',compact('specifications','categories'));
     }
@@ -42,21 +49,27 @@ class SpecificationController extends Controller
      */
     public function store(Request $request)
     {
-        // $base_url = 'http://mobile.khaingthinkyi.me/';
+        // dd($request);
+            $base_url = 'http://mobile.khaingthinkyi.me/';
          $request->validate([
-
             'category_id' => 'required',
-            'cpu' => 'required|min:3|max:191',
-            'memory' => 'required|min:3|max:191',
+            'cpu' => 'required|max:191',
+            'memory' => 'required|max:191',
             'main_camera' => 'required|min:3|max:191',
             'selfie_camera' => 'required|min:3|max:191',
-            'battery' => 'required|min:3|max:191',
+            'battery' => 'required|max:191',
             'features' => 'required|min:3|max:191',
             'display' => 'required|min:3|max:191',
-            'capacity' => 'required|min:3|max:191',
-            'price' => 'required|min:3|max:191',
+            'capacity' => 'required|max:191',
+            'price' => 'required|max:191',
             'os' => 'required|min:3|max:191',
-            'date' => 'required'
+            'date' => 'required',
+            'cpu_rank'      => 'required',
+            'gpu_rank'      => 'required',
+            'memory_rank'   => 'required',
+            'ux_rank'       => 'required',
+            'total'         => 'required',
+            
         ]);
        
         if($request->hasfile('image')){
@@ -64,7 +77,7 @@ class SpecificationController extends Controller
             $name=$image->getClientOriginalName();
             $image->move(public_path().
                 '/image/',$name);
-            $image='/image/'.$name;
+            $image=$base_url.'/image/'.$name;
         }
        
          // dd($request);
@@ -83,7 +96,13 @@ class SpecificationController extends Controller
               'os'              => request('os'),
               'date'            => request('date'),
                'review'          => request('review'),
-              'youtube'         => request('youtube')
+              'youtube'         => request('youtube'),
+              'cpu_rank'        => request('cup_rank'),
+            'gpu_rank'          => request('gpu_rank'),
+            'memory_rank'       => request('memory_rank'),
+            'ux_rank'           => request('ux_rank'),
+            'total'             => request('total'),
+              
         ]);
 
 
@@ -123,21 +142,26 @@ class SpecificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $base_url = "http://mobile.khaingthinkyi.me/";
+         $base_url = "http://mobile.khaingthinkyi.me/";
         $request->validate([
 
             'category_id' => 'required',
-            'cpu' => 'required|min:3|max:191',
-            'memory' => 'required|min:3|max:191',
+            'cpu' => 'required|max:191',
+            'memory' => 'required|max:191',
             'main_camera' => 'required|min:3|max:191',
             'selfie_camera' => 'required|min:3|max:191',
-            'battery' => 'required|min:3|max:191',
+            'battery' => 'required|max:191',
             'features' => 'required|min:3|max:191',
-            'display' => 'required|min:3|max:191',
-            'capacity' => 'required|min:3|max:191',
-            'price' => 'required|min:3|max:191',
+            'display' => 'required|max:191',
+            'capacity' => 'required|max:191',
+            'price' => 'required|max:191',
             'os' => 'required|min:3|max:191',
-            'date' => 'required'
+            'date' => 'required',
+            'cpu_rank'      => 'required',
+            'gpu_rank'      => 'required',
+            'memory_rank'   => 'required',
+            'ux_rank'       => 'required',
+            'total'         => 'required',
         ]);
         
         // dd($request);
@@ -146,7 +170,7 @@ class SpecificationController extends Controller
             $name=$image->getClientOriginalName();
             $image->move(public_path().
                 '/image/',$name);
-            $image= '/image/'.$name;
+            $image= $base_url.'/image/'.$name;
         }else{
             $image = request('old_image');
         }
@@ -167,6 +191,11 @@ class SpecificationController extends Controller
         $specificates->date = request('date');
         $specificates->review = request('review');
         $specificates->youtube = request('youtube');
+        $specificates->cpu_rank      = request('cpu_rank');
+        $specificates->gpu_rank      = request('gpu_rank');
+        $specificates->memory_rank   = request('memory_rank');
+        $specificates->ux_rank       = request('ux_rank');
+        $specificates->total         = request('total');
         $specificates->save();   
 
 
