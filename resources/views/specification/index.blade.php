@@ -243,10 +243,16 @@
 			@endforeach
 		</table>
 	</div>
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> a2c7d9df466bcf34d77c74cba40608854a27f83c
 	{{ $specifications->links() }}
 		
 	</div>
+	}
+	}
 	
 </div>
 

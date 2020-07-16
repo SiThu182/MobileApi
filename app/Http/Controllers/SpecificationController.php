@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 use App\Specification;
 use App\Category;
 use Illuminate\Pagination\Paginator;
+<<<<<<< HEAD
+=======
+use Illuminate\Support\Facades\DB;
+
+>>>>>>> a2c7d9df466bcf34d77c74cba40608854a27f83c
 class SpecificationController extends Controller
 {
     /**
@@ -15,7 +20,13 @@ class SpecificationController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
         $specifications = Specification::paginate(10);
+=======
+        $specifications = Specification::paginate(15);
+        // $specifications = DB::table('specifications')->paginate(15);
+        //dd($specifications);
+>>>>>>> a2c7d9df466bcf34d77c74cba40608854a27f83c
         $categories = Category::all();
         return view('specification.index',compact('specifications','categories'));
     }
